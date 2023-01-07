@@ -18,3 +18,16 @@ async def listEstablishments(id_county: str):
             "Longitude": establishment[3]
         })
     return response
+
+
+@app.get("/estabelecimento/{id_cnes}")
+async def get_Establishments_by_id(id_cnes: str):
+    establishment = await database.get_establishment(id_cnes)
+    establishment_data = establishment[0]
+    response = {
+        "Código CNES": establishment_data[0],
+        "Nome": establishment_data[1],
+        "Latitude": establishment_data[2],
+        "Longitude": establishment_data[3]
+    }
+    return response

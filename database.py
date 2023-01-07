@@ -14,3 +14,12 @@ class Database:
         cursor.execute(get_establishments, (id_county,))
         establishments = cursor.fetchall()
         return establishments
+
+    async def get_establishment(self, id_cnes):
+        cursor = self.connection.cursor()
+        get_establishment_by_id_cnes = """SELECT id_cnes, nome, latitude, longitude
+                                     FROM estabelecimentos WHERE id_cnes = ?
+                                  """
+        cursor.execute(get_establishment_by_id_cnes, (id_cnes,))
+        establishment = cursor.fetchall()
+        return establishment
